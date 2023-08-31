@@ -7,23 +7,30 @@ function App() {
 
 	const isBudgetZero = useMemo(() => budget === 0, [budget]);
 
-	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (isBudgetZero) {
 			setBudget(parseInt(inputValue));
+			setInputValue('');
 		} else {
 			setBudget(budget - parseInt(inputValue));
+			setInputValue('');
 		}
-	}
+	};
 
+	const handleReset = () => {
+		setBudget(0);
+		setInputValue('');
+	};
 	return (
 		<>
-			{budget < 0 ? (
-				<h1 className='red'>You are over budget by</h1>
-			) : (
-				<h1>Budget</h1>
-			)}
 			<div className='budget'>
+				{budget < 0 ? (
+					<h1 className='red'>You are over budget by</h1>
+				) : (
+					<h1>Budget</h1>
+				)}
+				{isBudgetZero ? null : <h2>{`残り${budget}円`}</h2>}
 				<form onSubmit={handleSubmit}>
 					{budget === 0 ? (
 						<input
@@ -32,16 +39,24 @@ function App() {
 							onChange={e => setInputValue(e.target.value)}
 						/>
 					) : null}
-					<h2>{`${budget}円`}</h2>
 					{isBudgetZero ? null : (
 						<input
 							type='number'
 							onChange={e => setInputValue(e.target.value)}
 						/>
 					)}
-					<button type='submit'>
-						{isBudgetZero ? 'Submit' : 'Add Expense'}
-					</button>
+					<div className='submit'>
+						<button type='submit'>
+							{isBudgetZero ? 'Submit' : 'Add Expense'}
+						</button>
+						{isBudgetZero ? null : (
+							<button
+								type='reset'
+								onClick={handleReset}>
+								Reset
+							</button>
+						)}
+					</div>
 				</form>
 			</div>
 		</>
