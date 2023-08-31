@@ -10,6 +10,7 @@ function App() {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (isBudgetZero) {
+			if (inputValue === '') return;
 			setBudget(parseInt(inputValue));
 			setInputValue('');
 		} else {
@@ -29,9 +30,9 @@ function App() {
 				{budget < 0 ? (
 					<h1 className='red'>You are over budget by</h1>
 				) : (
-					<h1>Budget</h1>
+					<h1 className='title'>Budget</h1>
 				)}
-				{isBudgetZero ? null : <h2>{`残り${budget}円`}</h2>}
+				{isBudgetZero ? null : <h2 className='value'>{`残り${budget}円`}</h2>}
 				<form onSubmit={handleSubmit}>
 					{budget === 0 ? (
 						<input
