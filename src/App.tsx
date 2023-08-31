@@ -13,6 +13,7 @@ function App() {
 			setBudget(parseInt(inputValue));
 			setInputValue('');
 		} else {
+			if (inputValue === '') return;
 			setBudget(budget - parseInt(inputValue));
 			setInputValue('');
 		}
@@ -46,9 +47,11 @@ function App() {
 						/>
 					)}
 					<div className='submit'>
-						<button type='submit'>
-							{isBudgetZero ? 'Submit' : 'Add Expense'}
-						</button>
+						{isBudgetZero ? (
+							<button type='submit'>Set Budget</button>
+						) : (
+							<button type='submit'>Submit</button>
+						)}
 						{isBudgetZero ? null : (
 							<button
 								type='reset'
