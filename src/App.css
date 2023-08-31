@@ -24,6 +24,7 @@ input::-webkit-inner-spin-button {
 	border: 1;
 	font-size: 2rem;
 	margin-right: 1em;
+	margin-top: 1em;
 }
 
 .budget {
@@ -43,4 +44,15 @@ input::-webkit-inner-spin-button {
 
 .value {
 	font-size: 5rem;
+	opacity: 0;
+	animation: fadeIn 7s forwards;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
