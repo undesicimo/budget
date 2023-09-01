@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useReducer, useState } from 'react';
 import './App.css';
 
 type Expense = {
@@ -6,8 +6,31 @@ type Expense = {
 	amount: string;
 };
 
+type Action =
+	| { type: 'SET_BUDGET'; payload: number }
+	| { type: 'ADD_EXPENSE'; payload: number }
+	| { type: 'RESET' };
+
+function taskReducer(expense: number, action: Action) {
+	switch (action.type) {
+		case 'SET_BUDGET': {
+			return action.payload;
+		}
+		case 'ADD_EXPENSE': {
+			return expense - action.payload;
+		}
+		case 'RESET': {
+			return 0;
+		}
+		default: {
+			throw new Error('Unexpected action');
+		}
+	}
+}
+
 function App() {
-	const [budget, setBudget] = useState(0);
+	const [budget, budgetDispatch] = useReducer(taskReducer, 0);
+	//TODO name and expense to reducer
 	const [inputValue, setInputValue] = useState('');
 	const [name, setName] = useState('');
 	const [expense, setExpense] = useState<Expense[]>([]);
@@ -19,20 +42,28 @@ function App() {
 			e.preventDefault();
 			if (isBudgetZero) {
 				if (inputValue === '') return;
-				setBudget(parseInt(inputValue));
+				budgetDispatch({
+					type: 'SET_BUDGET',
+					payload: parseInt(inputValue),
+				});
 				setInputValue('');
 			} else {
 				if (inputValue === '') return;
-				setBudget(budget - parseInt(inputValue));
+				budgetDispatch({
+					type: 'ADD_EXPENSE',
+					payload: parseInt(inputValue),
+				});
 				setExpense([...expense, { name: name, amount: inputValue }]);
 				e.currentTarget.reset();
 			}
 		},
-		[budget, expense, inputValue, isBudgetZero, name]
+		[expense, inputValue, isBudgetZero, name]
 	);
 
 	const handleReset = () => {
-		setBudget(0);
+		budgetDispatch({
+			type: 'RESET',
+		});
 		setInputValue('');
 		setName('');
 		setExpense([]);
