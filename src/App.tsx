@@ -6,12 +6,12 @@ type Expense = {
 	amount: string;
 };
 
-type Action =
+type BUDGET_ACTIONS =
 	| { type: 'SET_BUDGET'; payload: number }
 	| { type: 'ADD_EXPENSE'; payload: number }
 	| { type: 'RESET' };
 
-function taskReducer(expense: number, action: Action) {
+function budgetReducer(expense: number, action: BUDGET_ACTIONS) {
 	switch (action.type) {
 		case 'SET_BUDGET': {
 			return action.payload;
@@ -28,12 +28,29 @@ function taskReducer(expense: number, action: Action) {
 	}
 }
 
+type EXPENSE_ACTIONS =
+	| { type: 'ADD_EXPENSE'; payload: Expense }
+	| { type: 'RESET' };
+
+function expenseReducer(expense: Expense[], action: EXPENSE_ACTIONS) {
+	switch (action.type) {
+		case 'ADD_EXPENSE': {
+			return [...expense, action.payload];
+		}
+		case 'RESET': {
+			return [];
+		}
+		default: {
+			throw new Error('Unexpected action');
+		}
+	}
+}
+
 function App() {
-	const [budget, budgetDispatch] = useReducer(taskReducer, 0);
-	//TODO name and expense to reducer
 	const [inputValue, setInputValue] = useState('');
 	const [name, setName] = useState('');
-	const [expense, setExpense] = useState<Expense[]>([]);
+	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
+	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
 
 	const isBudgetZero = useMemo(() => budget === 0, [budget]);
 
@@ -48,17 +65,24 @@ function App() {
 				});
 				setInputValue('');
 			} else {
-				if (inputValue === '') return;
-				budgetDispatch({
-					type: 'ADD_EXPENSE',
-					payload: parseInt(inputValue),
-				});
-				setExpense([...expense, { name: name, amount: inputValue }]);
-				e.currentTarget.reset();
+				handleSetExpense(e);
 			}
 		},
 		[expense, inputValue, isBudgetZero, name]
 	);
+
+	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
+		if (inputValue === '') return;
+		budgetDispatch({
+			type: 'ADD_EXPENSE',
+			payload: parseInt(inputValue),
+		});
+		expenseDispatch({
+			type: 'ADD_EXPENSE',
+			payload: { name, amount: inputValue },
+		});
+		e.currentTarget.reset();
+	};
 
 	const handleReset = () => {
 		budgetDispatch({
@@ -66,8 +90,11 @@ function App() {
 		});
 		setInputValue('');
 		setName('');
-		setExpense([]);
+		expenseDispatch({
+			type: 'RESET',
+		});
 	};
+
 	return (
 		<>
 			<div className='budget'>
