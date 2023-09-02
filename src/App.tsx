@@ -71,7 +71,7 @@ export default function App() {
 						/>
 					) : null}
 					{isBudgetZero ? null : (
-						<div>
+						<div className='expenseInput'>
 							<input
 								type='text'
 								onChange={e => setName(e.target.value)}

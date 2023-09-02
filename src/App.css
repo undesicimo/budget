@@ -45,7 +45,13 @@ input::-webkit-inner-spin-button {
 .value {
 	font-size: 5rem;
 	opacity: 0;
-	animation: fadeIn 7s forwards;
+	animation: fadeIn 2s forwards;
+}
+
+.expenseInput {
+	opacity: 0;
+	animation: fadeIn 1s ease-in-out forwards;
+	animation-delay: 1s;
 }
 
 @keyframes fadeIn {
