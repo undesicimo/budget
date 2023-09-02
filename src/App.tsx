@@ -1,54 +1,12 @@
 import { useCallback, useMemo, useReducer, useState } from 'react';
 import './App.css';
+import { expenseReducer } from './expenseReducer';
+import { budgetReducer } from './budgetReducer';
 
-type Expense = {
-	name: string;
-	amount: string;
-};
-
-type BUDGET_ACTIONS =
-	| { type: 'SET_BUDGET'; payload: number }
-	| { type: 'ADD_EXPENSE'; payload: number }
-	| { type: 'RESET' };
-
-function budgetReducer(expense: number, action: BUDGET_ACTIONS) {
-	switch (action.type) {
-		case 'SET_BUDGET': {
-			return action.payload;
-		}
-		case 'ADD_EXPENSE': {
-			return expense - action.payload;
-		}
-		case 'RESET': {
-			return 0;
-		}
-		default: {
-			throw new Error('Unexpected action');
-		}
-	}
-}
-
-type EXPENSE_ACTIONS =
-	| { type: 'ADD_EXPENSE'; payload: Expense }
-	| { type: 'RESET' };
-
-function expenseReducer(expense: Expense[], action: EXPENSE_ACTIONS) {
-	switch (action.type) {
-		case 'ADD_EXPENSE': {
-			return [...expense, action.payload];
-		}
-		case 'RESET': {
-			return [];
-		}
-		default: {
-			throw new Error('Unexpected action');
-		}
-	}
-}
-
-function App() {
+export default function App() {
 	const [inputValue, setInputValue] = useState('');
 	const [name, setName] = useState('');
+
 	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
 	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
 
@@ -152,5 +110,3 @@ function App() {
 		</>
 	);
 }
-
-export default App;
