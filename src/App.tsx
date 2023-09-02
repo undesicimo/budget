@@ -3,6 +3,8 @@ import './App.css';
 import { expenseReducer } from './expenseReducer';
 import { budgetReducer } from './budgetReducer';
 import List from './List';
+import Budget from './Budget';
+import ExpenseInput from './Expense';
 
 export default function App() {
 	const [inputValue, setInputValue] = useState('');
@@ -32,6 +34,7 @@ export default function App() {
 
 	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
 		if (inputValue === '') return;
+		console.log(name, inputValue);
 		budgetDispatch({
 			type: 'ADD_EXPENSE',
 			payload: parseInt(inputValue),
@@ -58,56 +61,25 @@ export default function App() {
 		<>
 			<div className='app'>
 				<div className='budget'>
-					{isBudgetZero ? (
-						<h1 className='title'>予算設定してね</h1>
-					) : (
-						<h1 className='setexpense-title'>予算</h1>
-					)}
-					{isBudgetZero ? null : <h2 className='value'>{`残り${budget}円`}</h2>}
 					<form onSubmit={handleSubmit}>
-						{budget === 0 ? (
-							<input
-								type='number'
-								value={inputValue}
-								onChange={e => setInputValue(e.target.value)}
+						{isBudgetZero ? (
+							<Budget
+								inputValue={inputValue}
+								setInputValue={setInputValue}
 							/>
-						) : null}
-						{isBudgetZero ? null : (
-							<div className='expenseInput'>
-								<input
-									className='name'
-									placeholder='どいう'
-									type='text'
-									onChange={e => setName(e.target.value)}
+						) : (
+							<>
+								<ExpenseInput
+									budget={budget}
+									handleReset={handleReset}
+									setInputValue={setInputValue}
+									setName={setName}
 								/>
-								<input
-									type='number'
-									placeholder='いくら'
-									onChange={e => setInputValue(e.target.value)}
-								/>
-							</div>
+								<List expense={expense} />
+							</>
 						)}
-						<div className='submit'>
-							{isBudgetZero ? (
-								<button
-									className='setbudget'
-									type='submit'>
-									決定
-								</button>
-							) : (
-								<div className='setexpense'>
-									<button type='submit'>追加</button>
-									<button
-										type='reset'
-										onClick={handleReset}>
-										リセット
-									</button>
-								</div>
-							)}
-						</div>
 					</form>
 				</div>
-				{isBudgetZero ? null : <List expense={expense} />}
 			</div>
 		</>
 	);
