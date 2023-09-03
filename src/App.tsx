@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 import './App.css';
 import { expenseReducer } from './expenseReducer';
 import { budgetReducer } from './budgetReducer';
@@ -13,7 +13,7 @@ export default function App() {
 	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
 	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
 
-	const isBudgetZero = useMemo(() => budget === 0, [budget]);
+	const isBudgetZero = budget === 0;
 
 	const handleSubmit = useCallback(
 		(e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +33,7 @@ export default function App() {
 	);
 
 	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
-		if (inputValue === '') return;
+		if (inputValue === '' || name === '') return;
 		console.log(name, inputValue);
 		budgetDispatch({
 			type: 'ADD_EXPENSE',
@@ -58,29 +58,25 @@ export default function App() {
 	};
 
 	return (
-		<>
-			<div className='app'>
-				<div className='budget'>
-					<form onSubmit={handleSubmit}>
-						{isBudgetZero ? (
-							<Budget
-								inputValue={inputValue}
-								setInputValue={setInputValue}
-							/>
-						) : (
-							<>
-								<ExpenseInput
-									budget={budget}
-									handleReset={handleReset}
-									setInputValue={setInputValue}
-									setName={setName}
-								/>
-								<List expense={expense} />
-							</>
-						)}
-					</form>
-				</div>
-			</div>
-		</>
+		<div className='flex justify-center mt-40'>
+			<form onSubmit={handleSubmit}>
+				{isBudgetZero ? (
+					<Budget
+						inputValue={inputValue}
+						setInputValue={setInputValue}
+					/>
+				) : (
+					<>
+						<ExpenseInput
+							budget={budget}
+							handleReset={handleReset}
+							setInputValue={setInputValue}
+							setName={setName}
+						/>
+						<List expense={expense} />
+					</>
+				)}
+			</form>
+		</div>
 	);
 }
