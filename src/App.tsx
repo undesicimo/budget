@@ -58,7 +58,7 @@ export default function App() {
 	};
 
 	return (
-		<div className='flex justify-center mt-40'>
+		<div className='flex justify-center mt-40 scale-150'>
 			<form onSubmit={handleSubmit}>
 				{isBudgetZero ? (
 					<Budget
@@ -66,7 +66,7 @@ export default function App() {
 						setInputValue={setInputValue}
 					/>
 				) : (
-					<>
+					<div className='text-center'>
 						<ExpenseInput
 							budget={budget}
 							handleReset={handleReset}
@@ -74,7 +74,7 @@ export default function App() {
 							setName={setName}
 						/>
 						<List expense={expense} />
-					</>
+					</div>
 				)}
 			</form>
 		</div>
