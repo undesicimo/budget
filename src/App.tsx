@@ -43,6 +43,8 @@ export default function App() {
 			type: 'ADD_EXPENSE',
 			payload: { name, amount: inputValue },
 		});
+		setInputValue('');
+		setName('');
 		e.currentTarget.reset();
 	};
 
