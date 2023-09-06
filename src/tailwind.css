@@ -19,6 +19,10 @@
 body {
 	overflow-x: hidden;
 }
+body input {
+	background-color: inherit;
+	border-bottom: 0.5px black;
+}
 
 html,
 body {
