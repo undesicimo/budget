@@ -1,6 +1,7 @@
 import { useContext, useMemo } from 'react';
 import { Expense } from './types';
 import { ExpenseContext } from './expenseReducer';
+import { BudgetContext } from './budgetReducer';
 
 type P = {
 	expense: Expense[];
@@ -11,11 +12,17 @@ export default function List(props: P) {
 	const now = useMemo(() => new Date().toISOString().slice(0, 10), [expense]);
 
 	const expenseDispatch = useContext(ExpenseContext);
+	const budgetDispatch = useContext(BudgetContext);
 
-	const handleDelete = (id: string) => {
+	const handleDelete = (item: Expense) => {
 		expenseDispatch({
 			type: 'DELETE_EXPENSE',
-			payload: id,
+			payload: item.id,
+		});
+
+		budgetDispatch({
+			type: 'DELETE_EXPENSE',
+			payload: parseInt(item.amount),
 		});
 	};
 
@@ -31,7 +38,7 @@ export default function List(props: P) {
 							<p className='underline decoration-indigo-500 mr-1'>
 								{item.name}
 							</p>
-							<button onClick={() => handleDelete(item.id)}>
+							<button onClick={() => handleDelete(item)}>
 								<img
 									className='w-[13px] h-[13px]'
 									src='src/assets/deletebutton.svg'

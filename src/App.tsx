@@ -1,7 +1,7 @@
 import { useCallback, useReducer, useState } from 'react';
 import './App.css';
 import { ExpenseContext, expenseReducer } from './expenseReducer';
-import { budgetReducer } from './budgetReducer';
+import { BudgetContext, budgetReducer } from './budgetReducer';
 import List from './List';
 import Budget from './Budget';
 import ExpenseInput from './Expense';
@@ -60,26 +60,28 @@ export default function App() {
 
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
-			<div className='flex justify-center mt-40 scale-150'>
-				<form onSubmit={handleSubmit}>
-					{isBudgetZero ? (
-						<Budget
-							inputValue={inputValue}
-							setInputValue={setInputValue}
-						/>
-					) : (
-						<div className='text-center'>
-							<ExpenseInput
-								budget={budget}
-								handleReset={handleReset}
+			<BudgetContext.Provider value={budgetDispatch}>
+				<div className='flex justify-center mt-40 scale-150'>
+					<form onSubmit={handleSubmit}>
+						{isBudgetZero ? (
+							<Budget
+								inputValue={inputValue}
 								setInputValue={setInputValue}
-								setName={setName}
 							/>
-							<List expense={expense} />
-						</div>
-					)}
-				</form>
-			</div>
+						) : (
+							<div className='text-center'>
+								<ExpenseInput
+									budget={budget}
+									handleReset={handleReset}
+									setInputValue={setInputValue}
+									setName={setName}
+								/>
+								<List expense={expense} />
+							</div>
+						)}
+					</form>
+				</div>
+			</BudgetContext.Provider>
 		</ExpenseContext.Provider>
 	);
 }
