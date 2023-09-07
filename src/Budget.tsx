@@ -10,7 +10,7 @@ export default function Budget(props: P) {
 			<div className='flex flex-col items-center'>
 				<h1 className='mb-4 text-center text-xl'>予算設定してね</h1>
 				<input
-					className='h-10 w-full text-center focus:outline-none bg-inherit'
+					className='h-10 w-full text-center focus:outline-none bg-gray'
 					type='number'
 					value={inputValue}
 					onChange={e => setInputValue(e.target.value)}

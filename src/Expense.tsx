@@ -21,7 +21,7 @@ export default function ExpenseInput(props: P) {
 			<div className='expenseInput'>
 				<div className='w-auto m-3'>
 					<input
-						className='text-center bg-inherit'
+						className='text-center w-[80%] bg-gray focus:outline-none focus:placeholder-transparent'
 						placeholder='どいうの'
 						type='text'
 						onChange={e => setName(e.target.value)}
@@ -30,7 +30,7 @@ export default function ExpenseInput(props: P) {
 				</div>
 				<div className='w-auto m-3'>
 					<input
-						className='text-center bg-inherit'
+						className='text-center w-[80%] bg-gray focus:outline-none focus:placeholder-transparent'
 						type='number'
 						placeholder='いくら'
 						onChange={e => setInputValue(e.target.value)}
