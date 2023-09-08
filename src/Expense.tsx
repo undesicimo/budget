@@ -37,7 +37,11 @@ export default function Expense(props: P) {
 		e.currentTarget.reset();
 	};
 
-	const handleReset = () => {
+	const handleReset = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		if (!confirm('リセットしますか？')) {
+			e.preventDefault();
+			return;
+		}
 		budgetDispatch({
 			type: 'RESET',
 		});
@@ -52,8 +56,16 @@ export default function Expense(props: P) {
 	return (
 		<form onSubmit={handleSetExpense}>
 			<div className='text-center'>
-				<h1 className='w-auto text-xl '>予算</h1>
-				<h2 className='value'>{`残り${budget}円`}</h2>
+				{budget > 0 ? (
+					<h2 className='text-xl underline decoration-gray-600'>
+						{budget + '円'}
+					</h2>
+				) : (
+					<>
+						<h2 className='text-red-700 text-xl'>{Math.abs(budget) + '円'}</h2>
+						<h3>予算オーバー</h3>
+					</>
+				)}
 				<div className='expenseInput'>
 					<div className='w-auto m-3'>
 						<input
@@ -83,7 +95,7 @@ export default function Expense(props: P) {
 					<button
 						className='border-gray-600 border rounded-md'
 						type='reset'
-						onClick={handleReset}>
+						onClick={e => handleReset(e)}>
 						リセット
 					</button>
 				</div>

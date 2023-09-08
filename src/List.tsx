@@ -28,7 +28,7 @@ export default function List(props: P) {
 
 	return (
 		<>
-			<div className='m-2'>
+			<div className='m-2 overflow-auto h-[300px]'>
 				<h3 className='underline decoration-slate-500'>Expenses</h3>
 				{expense.map(item => (
 					<div
@@ -47,7 +47,7 @@ export default function List(props: P) {
 							</button>
 						</div>
 						<p className='expense-amount'>{`${item.amount}円`}</p>
-						<p>{now}</p>
+						<p className='mt-1 text-xs'>{now}</p>
 					</div>
 				))}
 			</div>
