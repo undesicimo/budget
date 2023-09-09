@@ -1,16 +1,17 @@
 import { useContext, useState } from 'react';
 import { BudgetContext } from './budgetReducer';
 import { ExpenseContext } from './expenseReducer';
+import { FormState, FormStates } from './types';
 
 type P = {
 	budget: number;
 	setInputValue: (value: React.SetStateAction<string>) => void;
 	inputValue: string;
-	setisBudgetSet: React.Dispatch<React.SetStateAction<boolean>>;
+	setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 };
 
 export default function Expense(props: P) {
-	const { budget, setInputValue, inputValue, setisBudgetSet } = props;
+	const { budget, setInputValue, inputValue, setFormState } = props;
 	const [name, setName] = useState('');
 	const budgetDispatch = useContext(BudgetContext);
 	const expenseDispatch = useContext(ExpenseContext);
@@ -50,7 +51,7 @@ export default function Expense(props: P) {
 		expenseDispatch({
 			type: 'RESET',
 		});
-		setisBudgetSet(false);
+		setFormState(FormStates.BudgetNotSet);
 	};
 
 	return (

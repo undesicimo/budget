@@ -5,10 +5,13 @@ import { BudgetContext, budgetReducer } from './budgetReducer';
 import List from './List';
 import Budget from './Budget';
 import Expense from './Expense';
+import { FormState, FormStates } from './types';
 
 export default function App() {
 	const [inputValue, setInputValue] = useState('');
-	const [isBudgetSet, setIsBudgetSet] = useState(false);
+	const [formState, setFormState] = useState<FormState>(
+		FormStates.BudgetNotSet
+	);
 
 	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
 	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
@@ -18,22 +21,22 @@ export default function App() {
 			<BudgetContext.Provider value={budgetDispatch}>
 				<div className='flex justify-center mt-40 scale-150'>
 					<div className='text-center'>
-						{isBudgetSet ? (
+						{formState === FormStates.BudgetNotSet ? (
+							<Budget
+								inputValue={inputValue}
+								setInputValue={setInputValue}
+								setFormState={setFormState}
+							/>
+						) : (
 							<>
 								<Expense
 									budget={budget}
 									setInputValue={setInputValue}
 									inputValue={inputValue}
-									setisBudgetSet={setIsBudgetSet}
+									setFormState={setFormState}
 								/>
 								<List expense={expense} />
 							</>
-						) : (
-							<Budget
-								inputValue={inputValue}
-								setInputValue={setInputValue}
-								setIsBudgetSet={setIsBudgetSet}
-							/>
 						)}
 					</div>
 				</div>

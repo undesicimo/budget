@@ -1,14 +1,15 @@
 import { useCallback, useContext } from 'react';
 import { BudgetContext } from './budgetReducer';
+import { FormState, FormStates } from './types';
 
 type P = {
 	inputValue: string;
 	setInputValue: (value: React.SetStateAction<string>) => void;
-	setIsBudgetSet: (value: React.SetStateAction<boolean>) => void;
+	setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 };
 
 export default function Budget(props: P) {
-	const { inputValue, setInputValue, setIsBudgetSet } = props;
+	const { inputValue, setInputValue, setFormState } = props;
 
 	const budgetDispatch = useContext(BudgetContext);
 
@@ -21,7 +22,7 @@ export default function Budget(props: P) {
 				payload: parseInt(inputValue),
 			});
 			setInputValue('');
-			setIsBudgetSet(true);
+			setFormState(FormStates.BudgetSet);
 		},
 		[inputValue]
 	);
