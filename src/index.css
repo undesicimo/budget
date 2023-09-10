@@ -550,16 +550,16 @@ video {
   margin-right: 0.25rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
 .mt-40 {
   margin-top: 10rem;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
 }
 
 .flex {
@@ -576,6 +576,18 @@ video {
 
 .h-\[300px\] {
   height: 300px;
+}
+
+.h-\[\] {
+  height: ;
+}
+
+.h-\[32px\] {
+  height: 32px;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .w-\[13px\] {
@@ -634,8 +646,36 @@ video {
   border-radius: 0.375rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-\[\] {
+  border-radius: ;
+}
+
+.rounded-\[9\.\] {
+  border-radius: 9.;
+}
+
+.rounded-\[9\.117px\] {
+  border-radius: 9.117px;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-\[608px\] {
+  border-width: 608px;
+}
+
+.border-\[0\.608px\] {
+  border-width: 0.608px;
 }
 
 .border-gray-600 {
@@ -643,8 +683,14 @@ video {
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
-.p-1 {
-  padding: 0.25rem;
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .px-0 {
@@ -671,6 +717,11 @@ video {
   line-height: 1rem;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
@@ -680,20 +731,16 @@ video {
   text-decoration-line: underline;
 }
 
+.decoration-gray-600 {
+  text-decoration-color: #4b5563;
+}
+
 .decoration-indigo-500 {
   text-decoration-color: #6366f1;
 }
 
 .decoration-slate-500 {
   text-decoration-color: #64748b;
-}
-
-.decoration-slate-200 {
-  text-decoration-color: #e2e8f0;
-}
-
-.decoration-gray-600 {
-  text-decoration-color: #4b5563;
 }
 
 .filter {
@@ -706,7 +753,7 @@ video {
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #fff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

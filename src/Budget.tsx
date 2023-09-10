@@ -1,6 +1,7 @@
 import { useCallback, useContext } from 'react';
 import { BudgetContext } from './budgetReducer';
 import { FormState, FormStates } from './types';
+import { StyledInput } from './components';
 
 type P = {
 	inputValue: string;
@@ -31,16 +32,19 @@ export default function Budget(props: P) {
 		<form onSubmit={handleSubmit}>
 			<div className='flex flex-col items-center justify-center overflow-x-hidden'>
 				<div className='flex flex-col items-center'>
-					<h1 className='mb-4 text-center text-xl'>予算設定してね</h1>
-					<input
-						className='h-10 w-full text-center focus:outline-none bg-gray'
-						type='number'
-						value={inputValue}
-						onChange={e => setInputValue(e.target.value)}
-					/>
+					<h1 className='mb-4 text-center text-xl text-black'>
+						予算設定してね
+					</h1>
+					<div className='h-[32px]'>
+						<StyledInput
+							type='number'
+							value={inputValue}
+							onChange={e => setInputValue(e.target.value)}
+						/>
+					</div>
 					<div className='flex justify-center'>
 						<button
-							className='border-gray-600 border rounded-md mt-3 px-0.5'
+							className='border-gray-600 border rounded-md mt-3 px-0.5 text-black'
 							type='submit'>
 							決定
 						</button>
