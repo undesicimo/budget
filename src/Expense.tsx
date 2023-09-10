@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { BudgetContext } from './budgetReducer';
 import { ExpenseContext } from './expenseReducer';
 import { FormState, FormStates } from './types';
+import { StyledInput } from './components';
 
 type P = {
 	budget: number;
@@ -56,30 +57,31 @@ export default function Expense(props: P) {
 
 	return (
 		<form onSubmit={handleSetExpense}>
-			<div className='text-center'>
-				{budget > 0 ? (
-					<h2 className='text-xl underline decoration-gray-600'>
-						{budget + '円'}
-					</h2>
-				) : (
-					<>
-						<h2 className='text-red-700 text-xl'>{Math.abs(budget) + '円'}</h2>
-						<h3>予算オーバー</h3>
-					</>
-				)}
-				<div className='expenseInput'>
-					<div className='w-auto m-3'>
-						<input
-							className='text-center w-[80%] bg-gray focus:outline-none focus:placeholder-transparent'
+			<div className='text-center mx-8'>
+				<div className='w-auto grid grid-col'>
+					<h1 className='text-black text-m justify-self-start'>残高</h1>
+					{budget > 0 ? (
+						<h2 className='text-xl text-black'>{'¥' + budget}</h2>
+					) : (
+						<>
+							<h2 className='text-red-700 text-xl'>
+								{Math.abs(budget) + '円'}
+							</h2>
+							<h3>予算オーバー</h3>
+						</>
+					)}
+				</div>
+				<div className='w-auto grid grid-col'>
+					<div className='w-auto my-4'>
+						<StyledInput
 							placeholder='どいうの'
 							type='text'
 							onChange={e => setName(e.target.value)}
 							onKeyDown={handleKeyDown}
 						/>
 					</div>
-					<div className='w-auto m-3'>
-						<input
-							className='text-center w-[80%] bg-gray focus:outline-none focus:placeholder-transparent'
+					<div className='w-auto my-4'>
+						<StyledInput
 							type='number'
 							placeholder='いくら'
 							onChange={e => setInputValue(e.target.value)}
@@ -89,12 +91,12 @@ export default function Expense(props: P) {
 				</div>
 				<div className='flex space-x-2 justify-center'>
 					<button
-						className='border-gray-600 border rounded-md'
+						className='border-gray-600 border rounded-md text-black'
 						type='submit'>
 						追加
 					</button>
 					<button
-						className='border-gray-600 border rounded-md'
+						className='border-gray-600 border rounded-md text-black'
 						type='reset'
 						onClick={e => handleReset(e)}>
 						リセット

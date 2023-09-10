@@ -19,7 +19,7 @@ export default function App() {
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
 			<BudgetContext.Provider value={budgetDispatch}>
-				<div className='flex justify-center mt-40 scale-150'>
+				<div className='flex justify-center mt-[142px] mx-auto '>
 					<div className='text-center'>
 						{formState === FormStates.BudgetNotSet ? (
 							<Budget
