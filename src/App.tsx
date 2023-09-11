@@ -19,26 +19,24 @@ export default function App() {
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
 			<BudgetContext.Provider value={budgetDispatch}>
-				<div className='flex justify-center mt-[142px] mx-auto '>
-					<div className='text-center'>
-						{formState === FormStates.BudgetNotSet ? (
-							<Budget
-								inputValue={inputValue}
+				<div className='flex justify-center mt-[142px] mx-16'>
+					{formState === FormStates.BudgetNotSet ? (
+						<Budget
+							inputValue={inputValue}
+							setInputValue={setInputValue}
+							setFormState={setFormState}
+						/>
+					) : (
+						<div>
+							<Expense
+								budget={budget}
 								setInputValue={setInputValue}
+								inputValue={inputValue}
 								setFormState={setFormState}
 							/>
-						) : (
-							<>
-								<Expense
-									budget={budget}
-									setInputValue={setInputValue}
-									inputValue={inputValue}
-									setFormState={setFormState}
-								/>
-								<List expense={expense} />
-							</>
-						)}
-					</div>
+							<List expense={expense} />
+						</div>
+					)}
 				</div>
 			</BudgetContext.Provider>
 		</ExpenseContext.Provider>

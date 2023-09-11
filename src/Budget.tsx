@@ -29,8 +29,8 @@ export default function Budget(props: P) {
 	);
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<div className='flex flex-col items-center justify-center overflow-x-hidden'>
+		<div className='flex flex-col items-center justify-center overflow-x-hidden'>
+			<form onSubmit={handleSubmit}>
 				<div className='flex flex-col items-center'>
 					<h1 className='mb-4 text-center text-xl text-black'>
 						予算設定してね
@@ -50,7 +50,7 @@ export default function Budget(props: P) {
 						</button>
 					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	);
 }

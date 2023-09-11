@@ -29,25 +29,30 @@ export default function List(props: P) {
 	return (
 		<>
 			<div className='m-2 overflow-auto h-[300px]'>
-				<h3 className='underline decoration-slate-500'>Expenses</h3>
 				{expense.map(item => (
 					<div
-						className='expenses'
+						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 grid grid-flow-row justify-center items-center'
 						key={item.id}>
 						<div className='flex flex-row justify-center'>
-							<p className='underline decoration-indigo-500 mr-1'>
-								{item.name}
-							</p>
-							<button onClick={() => handleDelete(item)}>
-								<img
-									className='w-[13px] h-[13px]'
-									src='src/assets/deletebutton.svg'
-									alt='delete'
-								/>
-							</button>
+							<div>
+								<p className='underline decoration-indigo-500 text-black text-xl'>
+									{item.name}
+								</p>
+								<p className='text-black text-xs'>{now}</p>
+							</div>
+							<div>
+								<p className='text-black'>{`${item.amount}円`}</p>
+							</div>
+							<div>
+								<button onClick={() => handleDelete(item)}>
+									<img
+										className='w-6 h-6'
+										src='src/assets/deletebutton.svg'
+										alt='delete'
+									/>
+								</button>
+							</div>
 						</div>
-						<p className='expense-amount'>{`${item.amount}円`}</p>
-						<p className='mt-1 text-xs'>{now}</p>
 					</div>
 				))}
 			</div>

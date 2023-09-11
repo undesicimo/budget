@@ -56,52 +56,50 @@ export default function Expense(props: P) {
 	};
 
 	return (
-		<form onSubmit={handleSetExpense}>
-			<div className='text-center mx-8'>
-				<div className='w-auto grid grid-col'>
-					<h1 className='text-black text-m justify-self-start'>残高</h1>
-					{budget > 0 ? (
-						<h2 className='text-xl text-black'>{'¥' + budget}</h2>
-					) : (
-						<>
-							<h2 className='text-red-700 text-xl'>
-								{Math.abs(budget) + '円'}
-							</h2>
-							<h3>予算オーバー</h3>
-						</>
-					)}
+		<form
+			className='w-64 mx-auto flex flex-col'
+			onSubmit={handleSetExpense}>
+			<div className='w-auto grid grid-col'>
+				<h1 className='text-black text-2xl justify-self-start'>残高</h1>
+				{budget > 0 ? (
+					<h2 className='text-4xl text-black'>{'¥' + budget}</h2>
+				) : (
+					<>
+						<h2 className='text-red-700 text-xl'>{Math.abs(budget) + '円'}</h2>
+						<h3>予算オーバー</h3>
+					</>
+				)}
+			</div>
+			<div className='w-60 flex flex-col justify-center'>
+				<div className='w-60 my-4'>
+					<StyledInput
+						placeholder='どいうの'
+						type='text'
+						onChange={e => setName(e.target.value)}
+						onKeyDown={handleKeyDown}
+					/>
 				</div>
-				<div className='w-auto grid grid-col'>
-					<div className='w-auto my-4'>
-						<StyledInput
-							placeholder='どいうの'
-							type='text'
-							onChange={e => setName(e.target.value)}
-							onKeyDown={handleKeyDown}
-						/>
-					</div>
-					<div className='w-auto my-4'>
-						<StyledInput
-							type='number'
-							placeholder='いくら'
-							onChange={e => setInputValue(e.target.value)}
-							onKeyDown={handleKeyDown}
-						/>
-					</div>
+				<div className='w-60 my-4'>
+					<StyledInput
+						type='number'
+						placeholder='金額'
+						onChange={e => setInputValue(e.target.value)}
+						onKeyDown={handleKeyDown}
+					/>
 				</div>
-				<div className='flex space-x-2 justify-center'>
-					<button
-						className='border-gray-600 border rounded-md text-black'
-						type='submit'>
-						追加
-					</button>
-					<button
-						className='border-gray-600 border rounded-md text-black'
-						type='reset'
-						onClick={e => handleReset(e)}>
-						リセット
-					</button>
-				</div>
+			</div>
+			<div className='grid grid-cols-2 gap-y-8 justify-between '>
+				<button
+					className='border-gray-600 border rounded-md text-black w-28 h-8'
+					type='submit'>
+					追加
+				</button>
+				<button
+					className='border-gray-600 border rounded-md text-black w-28 h-8'
+					type='reset'
+					onClick={e => handleReset(e)}>
+					リセット
+				</button>
 			</div>
 		</form>
 	);
