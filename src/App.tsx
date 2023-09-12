@@ -1,86 +1,44 @@
-import { useCallback, useMemo, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import './App.css';
-import { expenseReducer } from './expenseReducer';
-import { budgetReducer } from './budgetReducer';
+import { ExpenseContext, expenseReducer } from './expenseReducer';
+import { BudgetContext, budgetReducer } from './budgetReducer';
 import List from './List';
 import Budget from './Budget';
-import ExpenseInput from './Expense';
+import Expense from './Expense';
+import { FormState, FormStates } from './types';
 
 export default function App() {
 	const [inputValue, setInputValue] = useState('');
-	const [name, setName] = useState('');
+	const [formState, setFormState] = useState<FormState>(
+		FormStates.BudgetNotSet
+	);
 
 	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
 	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
 
-	const isBudgetZero = useMemo(() => budget === 0, [budget]);
-
-	const handleSubmit = useCallback(
-		(e: React.FormEvent<HTMLFormElement>) => {
-			e.preventDefault();
-			if (isBudgetZero) {
-				if (inputValue === '') return;
-				budgetDispatch({
-					type: 'SET_BUDGET',
-					payload: parseInt(inputValue),
-				});
-				setInputValue('');
-			} else {
-				handleSetExpense(e);
-			}
-		},
-		[expense, inputValue, isBudgetZero, name]
-	);
-
-	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
-		if (inputValue === '') return;
-		console.log(name, inputValue);
-		budgetDispatch({
-			type: 'ADD_EXPENSE',
-			payload: parseInt(inputValue),
-		});
-		expenseDispatch({
-			type: 'ADD_EXPENSE',
-			payload: { name, amount: inputValue },
-		});
-		e.currentTarget.reset();
-	};
-
-	const handleReset = () => {
-		budgetDispatch({
-			type: 'RESET',
-		});
-		setInputValue('');
-		setName('');
-		expenseDispatch({
-			type: 'RESET',
-		});
-	};
-
 	return (
-		<>
-			<div className='app'>
-				<div className='budget'>
-					<form onSubmit={handleSubmit}>
-						{isBudgetZero ? (
-							<Budget
-								inputValue={inputValue}
+		<ExpenseContext.Provider value={expenseDispatch}>
+			<BudgetContext.Provider value={budgetDispatch}>
+				<div className='flex justify-center mt-[142px] mx-16'>
+					{formState === FormStates.BudgetNotSet ? (
+						<Budget
+							inputValue={inputValue}
+							setInputValue={setInputValue}
+							setFormState={setFormState}
+						/>
+					) : (
+						<div>
+							<Expense
+								budget={budget}
 								setInputValue={setInputValue}
+								inputValue={inputValue}
+								setFormState={setFormState}
 							/>
-						) : (
-							<>
-								<ExpenseInput
-									budget={budget}
-									handleReset={handleReset}
-									setInputValue={setInputValue}
-									setName={setName}
-								/>
-								<List expense={expense} />
-							</>
-						)}
-					</form>
+							<List expense={expense} />
+						</div>
+					)}
 				</div>
-			</div>
-		</>
+			</BudgetContext.Provider>
+		</ExpenseContext.Provider>
 	);
 }

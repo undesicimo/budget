@@ -1,5 +1,7 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { Expense } from './types';
+import { ExpenseContext } from './expenseReducer';
+import { BudgetContext } from './budgetReducer';
 
 type P = {
 	expense: Expense[];
@@ -8,18 +10,44 @@ type P = {
 export default function List(props: P) {
 	const { expense } = props;
 	const now = useMemo(() => new Date().toISOString().slice(0, 10), [expense]);
+
+	const expenseDispatch = useContext(ExpenseContext);
+	const budgetDispatch = useContext(BudgetContext);
+
+	const handleDelete = (item: Expense) => {
+		expenseDispatch({
+			type: 'DELETE_EXPENSE',
+			payload: item.id,
+		});
+
+		budgetDispatch({
+			type: 'DELETE_EXPENSE',
+			payload: parseInt(item.amount),
+		});
+	};
+
 	return (
 		<>
-			<div className='seperator'></div>
-			<div className='expense-list'>
-				<h3 className='title'>Expenses</h3>
-				{expense.map((item, index) => (
+			<div className='my-8 overflow-auto h-[300px]'>
+				{expense.map(item => (
 					<div
-						className='expenses'
-						key={index}>
-						<p className='expense-name'>{item.name}</p>
-						<p className='expense-amount'>{`${item.amount}円`}</p>
-						<p>{now}</p>
+						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 flex flex-row justify-between px-8 mb-4'
+						key={item.id}>
+						<div className='self-center'>
+							<p className='text-black text-xl'>{item.name}</p>
+							<p className='text-black text-xs'>{now}</p>
+						</div>
+						<div className='self-center'>
+							<p className='text-black text-2xl'>{`${item.amount}円`}</p>
+						</div>
+						<div className='w-[24px] h-[24px] self-center'>
+							<button onClick={() => handleDelete(item)}>
+								<img
+									src='src/assets/deletebutton.svg'
+									alt='delete'
+								/>
+							</button>
+						</div>
 					</div>
 				))}
 			</div>
