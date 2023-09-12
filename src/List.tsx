@@ -28,30 +28,25 @@ export default function List(props: P) {
 
 	return (
 		<>
-			<div className='m-2 overflow-auto h-[300px]'>
+			<div className='my-8 overflow-auto h-[300px]'>
 				{expense.map(item => (
 					<div
-						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 grid grid-flow-row justify-center items-center'
+						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 flex flex-row justify-between px-8 mb-4'
 						key={item.id}>
-						<div className='flex flex-row justify-center'>
-							<div>
-								<p className='underline decoration-indigo-500 text-black text-xl'>
-									{item.name}
-								</p>
-								<p className='text-black text-xs'>{now}</p>
-							</div>
-							<div>
-								<p className='text-black'>{`${item.amount}円`}</p>
-							</div>
-							<div>
-								<button onClick={() => handleDelete(item)}>
-									<img
-										className='w-6 h-6'
-										src='src/assets/deletebutton.svg'
-										alt='delete'
-									/>
-								</button>
-							</div>
+						<div className='self-center'>
+							<p className='text-black text-xl'>{item.name}</p>
+							<p className='text-black text-xs'>{now}</p>
+						</div>
+						<div className='self-center'>
+							<p className='text-black text-2xl'>{`${item.amount}円`}</p>
+						</div>
+						<div className='w-[24px] h-[24px] self-center'>
+							<button onClick={() => handleDelete(item)}>
+								<img
+									src='src/assets/deletebutton.svg'
+									alt='delete'
+								/>
+							</button>
 						</div>
 					</div>
 				))}
