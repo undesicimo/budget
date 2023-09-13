@@ -33,9 +33,13 @@ export default function List(props: P) {
 					<div
 						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 flex flex-row justify-between px-8 mb-4'
 						key={item.id}>
-						<div className='self-center'>
-							<p className='text-black text-xl'>{item.name}</p>
-							<p className='text-black text-xs'>{now}</p>
+						<div className='self-center w-16'>
+							<p
+								className='text-black truncate'
+								title={item.name}>
+								{item.name}
+							</p>
+							<p className='text-black text-[0.61rem]'>{now}</p>
 						</div>
 						<div className='self-center'>
 							<p className='text-black text-2xl'>{`${item.amount}円`}</p>

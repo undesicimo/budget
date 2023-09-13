@@ -6,7 +6,7 @@ export function StyledInput<
 >(props: T) {
 	return (
 		<input
-			className='h-full w-60 text-center focus:outline-none bg-white 
+			className='h-full w-full text-center focus:outline-none bg-white 
 			text-black rounded-[9.117px] border-[0.608px] border-black'
 			{...props}
 		/>

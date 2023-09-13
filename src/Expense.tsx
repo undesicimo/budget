@@ -57,26 +57,24 @@ export default function Expense(props: P) {
 
 	return (
 		<form
-			className='w-64 mx-auto'
+			className='w-[16.5625rem] mx-auto'
 			onSubmit={handleSetExpense}>
 			<div className='flex flex-col items-center'>
 				<div className='flex flex-col'>
 					<h1 className='text-black text-2xl self-center'>残高</h1>
-					<div className=''>
-						{budget > 0 ? (
-							<h2 className='text-4xl text-black'>{'¥' + budget}</h2>
-						) : (
-							<>
-								<h2 className='text-red-700 text-xl'>
-									{Math.abs(budget) + '円'}
-								</h2>
-								<h3>予算オーバー</h3>
-							</>
-						)}
-					</div>
+					{budget > 0 ? (
+						<h2 className='text-4xl text-black'>{'¥' + budget}</h2>
+					) : (
+						<>
+							<h2 className='text-red-700 text-xl'>
+								{Math.abs(budget) + '円'}
+							</h2>
+							<h3>予算オーバー</h3>
+						</>
+					)}
 				</div>
-				<div className='self-center'>
-					<div className='w-60 my-4'>
+				<div className='flex flex-col gap-8 my-8 w-full'>
+					<div>
 						<StyledInput
 							placeholder='どいうの'
 							type='text'
@@ -84,7 +82,7 @@ export default function Expense(props: P) {
 							onKeyDown={handleKeyDown}
 						/>
 					</div>
-					<div className='w-60 my-4'>
+					<div>
 						<StyledInput
 							type='number'
 							placeholder='金額'
@@ -93,14 +91,14 @@ export default function Expense(props: P) {
 						/>
 					</div>
 				</div>
-				<div className='flex flex-row'>
+				<div className='flex flex-row gap-8 h-[2.3rem]'>
 					<button
-						className='border-gray-600 border rounded-md text-black w-28 h-8 mr-2'
+						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
 						type='submit'>
 						追加
 					</button>
 					<button
-						className='border-gray-600 border rounded-md text-black w-28 h-8 ml-2'
+						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
 						type='reset'
 						onClick={e => handleReset(e)}>
 						リセット
