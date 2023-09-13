@@ -1,1 +1,2 @@
-export const generateRandomId = () => crypto.randomUUID();
+import { uid } from 'uid/secure';
+export const generateRandomId = () => uid();
