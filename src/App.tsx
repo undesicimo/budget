@@ -18,13 +18,14 @@ export default function App() {
 	const [inputValue, setInputValue] = useState('');
 
 	const [, budgetDispatch] = useReducer(budgetReducer, 0);
+	const [, expenseDispatch] = useReducer(expenseReducer, []);
+
 	const [budget] = useLocalStorage<number>(BUDGET_KEY, 0); //set 0 as default
+	const [expense] = useLocalStorage(EXPENSE_KEY, []);
 	const [formState] = useLocalStorage<FormState>(
 		FORMSTATE_KEY,
 		FormStates.BudgetNotSet
 	);
-	const [, expenseDispatch] = useReducer(expenseReducer, []);
-	const [expense] = useLocalStorage(EXPENSE_KEY, []);
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
 			<BudgetContext.Provider value={budgetDispatch}>
