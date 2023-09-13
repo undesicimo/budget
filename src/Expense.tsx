@@ -1,17 +1,18 @@
 import { useContext, useState } from 'react';
 import { BudgetContext, BudgetLocalStorageContext } from './budgetReducer';
 import { ExpenseContext } from './expenseReducer';
-import { FormState, FormStates } from './types';
+import { FormStates } from './types';
 import { StyledInput } from './components';
+import { FORMSTATE_KEY } from './App';
+import { writeStorage } from '@rehooks/local-storage';
 
 type P = {
 	setInputValue: (value: React.SetStateAction<string>) => void;
 	inputValue: string;
-	setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 };
 
 export default function Expense(props: P) {
-	const { setInputValue, inputValue, setFormState } = props;
+	const { setInputValue, inputValue } = props;
 	const [name, setName] = useState('');
 	const budgetDispatch = useContext(BudgetContext);
 	const expenseDispatch = useContext(ExpenseContext);
@@ -52,7 +53,7 @@ export default function Expense(props: P) {
 		expenseDispatch({
 			type: 'RESET',
 		});
-		setFormState(FormStates.BudgetNotSet);
+		writeStorage(FORMSTATE_KEY, FormStates.BudgetNotSet);
 	};
 
 	return (

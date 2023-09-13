@@ -1,16 +1,17 @@
 import { useCallback, useContext } from 'react';
 import { BudgetContext } from './budgetReducer';
-import { FormState, FormStates } from './types';
+import { FormStates } from './types';
 import { StyledInput } from './components';
+import { FORMSTATE_KEY } from './App';
+import { writeStorage } from '@rehooks/local-storage';
 
 type P = {
 	inputValue: string;
 	setInputValue: (value: React.SetStateAction<string>) => void;
-	setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 };
 
 export default function Budget(props: P) {
-	const { inputValue, setInputValue, setFormState } = props;
+	const { inputValue, setInputValue } = props;
 
 	const budgetDispatch = useContext(BudgetContext);
 
@@ -23,7 +24,7 @@ export default function Budget(props: P) {
 				payload: parseInt(inputValue),
 			});
 			setInputValue('');
-			setFormState(FormStates.BudgetSet);
+			writeStorage(FORMSTATE_KEY, FormStates.BudgetSet);
 		},
 		[inputValue]
 	);
