@@ -1,5 +1,4 @@
 import { useReducer, useState } from 'react';
-import './App.css';
 import { ExpenseContext, expenseReducer } from './expenseReducer';
 import { BudgetContext, budgetReducer } from './budgetReducer';
 import List from './List';
