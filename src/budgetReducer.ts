@@ -1,7 +1,10 @@
+import { deleteFromStorage, writeStorage } from '@rehooks/local-storage';
 import { Dispatch, createContext } from 'react';
 
-export const BudgetContext = createContext<Dispatch<BUDGET_ACTIONS>>(() => {});
+export const BUDGET_KEY = 'budget';
 
+export const BudgetContext = createContext<Dispatch<BUDGET_ACTIONS>>(() => {});
+export const BudgetLocalStorageContext = createContext<number>(0);
 type BUDGET_ACTIONS =
 	| { type: 'SET_BUDGET'; payload: number }
 	| { type: 'ADD_EXPENSE'; payload: number }
@@ -11,6 +14,7 @@ type BUDGET_ACTIONS =
 export function budgetReducer(expense: number, action: BUDGET_ACTIONS) {
 	switch (action.type) {
 		case 'SET_BUDGET': {
+			writeStorage(BUDGET_KEY, action.payload);
 			return action.payload;
 		}
 		case 'ADD_EXPENSE': {
@@ -20,6 +24,7 @@ export function budgetReducer(expense: number, action: BUDGET_ACTIONS) {
 			return expense + action.payload;
 		}
 		case 'RESET': {
+			deleteFromStorage(BUDGET_KEY);
 			return 0;
 		}
 		default: {

@@ -1,10 +1,16 @@
-import { useReducer, useState } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import { ExpenseContext, expenseReducer } from './expenseReducer';
-import { BudgetContext, budgetReducer } from './budgetReducer';
+import {
+	BudgetContext,
+	budgetReducer,
+	BudgetLocalStorageContext,
+	BUDGET_KEY,
+} from './budgetReducer';
 import List from './List';
 import Budget from './Budget';
 import Expense from './Expense';
 import { FormState, FormStates } from './types';
+import useLocalStorage from '@rehooks/local-storage';
 
 export default function App() {
 	const [inputValue, setInputValue] = useState('');
@@ -12,31 +18,33 @@ export default function App() {
 		FormStates.BudgetNotSet
 	);
 
-	const [budget, budgetDispatch] = useReducer(budgetReducer, 0);
+	const [, budgetDispatch] = useReducer(budgetReducer, 0);
+	const [budget] = useLocalStorage<number>(BUDGET_KEY, 0); //set 0 as default
 	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
 
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
 			<BudgetContext.Provider value={budgetDispatch}>
-				<div className='flex justify-center mt-[142px] mx-16'>
-					{formState === FormStates.BudgetNotSet ? (
-						<Budget
-							inputValue={inputValue}
-							setInputValue={setInputValue}
-							setFormState={setFormState}
-						/>
-					) : (
-						<div>
-							<Expense
-								budget={budget}
-								setInputValue={setInputValue}
+				<BudgetLocalStorageContext.Provider value={budget}>
+					<div className='flex justify-center mt-[142px] mx-16'>
+						{formState === FormStates.BudgetNotSet ? (
+							<Budget
 								inputValue={inputValue}
+								setInputValue={setInputValue}
 								setFormState={setFormState}
 							/>
-							<List expense={expense} />
-						</div>
-					)}
-				</div>
+						) : (
+							<div>
+								<Expense
+									setInputValue={setInputValue}
+									inputValue={inputValue}
+									setFormState={setFormState}
+								/>
+								<List expense={expense} />
+							</div>
+						)}
+					</div>
+				</BudgetLocalStorageContext.Provider>
 			</BudgetContext.Provider>
 		</ExpenseContext.Provider>
 	);

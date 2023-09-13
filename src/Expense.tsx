@@ -1,21 +1,21 @@
 import { useContext, useState } from 'react';
-import { BudgetContext } from './budgetReducer';
+import { BudgetContext, BudgetLocalStorageContext } from './budgetReducer';
 import { ExpenseContext } from './expenseReducer';
 import { FormState, FormStates } from './types';
 import { StyledInput } from './components';
 
 type P = {
-	budget: number;
 	setInputValue: (value: React.SetStateAction<string>) => void;
 	inputValue: string;
 	setFormState: React.Dispatch<React.SetStateAction<FormState>>;
 };
 
 export default function Expense(props: P) {
-	const { budget, setInputValue, inputValue, setFormState } = props;
+	const { setInputValue, inputValue, setFormState } = props;
 	const [name, setName] = useState('');
 	const budgetDispatch = useContext(BudgetContext);
 	const expenseDispatch = useContext(ExpenseContext);
+	const budget = useContext(BudgetLocalStorageContext);
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
