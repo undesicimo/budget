@@ -24,8 +24,8 @@ export default function Expense(props: P) {
 	};
 
 	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
-		if (inputValue === '' || name === '') return;
 		e.preventDefault();
+		if (inputValue === '' || name === '') return;
 		budgetDispatch({
 			type: 'ADD_EXPENSE',
 			payload: parseInt(inputValue),
@@ -66,10 +66,10 @@ export default function Expense(props: P) {
 						<h2 className='text-4xl text-black'>{'¥' + budget}</h2>
 					) : (
 						<>
-							<h2 className='text-red-700 text-xl'>
+							<h2 className='text-red-700 text-xl self-center'>
 								{Math.abs(budget) + '円'}
 							</h2>
-							<h3>予算オーバー</h3>
+							<h3 className='text-red-700 text-xl self-center'>予算オーバー</h3>
 						</>
 					)}
 				</div>
