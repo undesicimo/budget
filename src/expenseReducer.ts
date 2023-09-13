@@ -1,6 +1,8 @@
 import { Dispatch, createContext } from 'react';
 import { Expense } from './types';
 import { generateRandomId } from './utils';
+import { deleteFromStorage, writeStorage } from '@rehooks/local-storage';
+export const EXPENSE_KEY = 'expense';
 
 export const ExpenseContext = createContext<Dispatch<EXPENSE_ACTIONS>>(
 	() => {}
@@ -14,12 +16,24 @@ type EXPENSE_ACTIONS =
 export function expenseReducer(expense: Expense[], action: EXPENSE_ACTIONS) {
 	switch (action.type) {
 		case 'ADD_EXPENSE': {
-			return [...expense, { ...action.payload, id: generateRandomId() }];
+			const newExpense = [
+				...expense,
+				{ ...action.payload, id: generateRandomId() },
+			];
+			writeStorage(EXPENSE_KEY, newExpense);
+
+			return newExpense;
 		}
 		case 'DELETE_EXPENSE': {
-			return expense.filter(item => item.id !== action.payload);
+			const filteredExpense = expense.filter(
+				item => item.id !== action.payload
+			);
+			writeStorage(EXPENSE_KEY, filteredExpense);
+
+			return filteredExpense;
 		}
 		case 'RESET': {
+			deleteFromStorage(EXPENSE_KEY);
 			return [];
 		}
 		default: {

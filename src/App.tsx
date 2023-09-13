@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { ExpenseContext, expenseReducer } from './expenseReducer';
+import { EXPENSE_KEY, ExpenseContext, expenseReducer } from './expenseReducer';
 import {
 	BudgetContext,
 	budgetReducer,
@@ -23,8 +23,8 @@ export default function App() {
 		FORMSTATE_KEY,
 		FormStates.BudgetNotSet
 	);
-	const [expense, expenseDispatch] = useReducer(expenseReducer, []);
-
+	const [, expenseDispatch] = useReducer(expenseReducer, []);
+	const [expense] = useLocalStorage(EXPENSE_KEY, []);
 	return (
 		<ExpenseContext.Provider value={expenseDispatch}>
 			<BudgetContext.Provider value={budgetDispatch}>
