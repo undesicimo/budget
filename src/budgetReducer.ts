@@ -18,10 +18,14 @@ export function budgetReducer(expense: number, action: BUDGET_ACTIONS) {
 			return action.payload;
 		}
 		case 'ADD_EXPENSE': {
-			return expense - action.payload;
+			const newExpense = expense - action.payload;
+			writeStorage(BUDGET_KEY, newExpense);
+			return newExpense;
 		}
 		case 'DELETE_EXPENSE': {
-			return expense + action.payload;
+			const newExpense = expense + action.payload;
+			writeStorage(BUDGET_KEY, newExpense);
+			return newExpense;
 		}
 		case 'RESET': {
 			deleteFromStorage(BUDGET_KEY);
