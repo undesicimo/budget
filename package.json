@@ -9,7 +9,7 @@
 		"build": "tsc && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"tailwind:css": "tailwind build src/tailwind.css -c tailwind.config.js -o src/index.css --watch"
+		"tailwind": "tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
 	},
 	"dependencies": {
 		"@rehooks/local-storage": "^2.4.5",
