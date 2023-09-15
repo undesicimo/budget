@@ -27,6 +27,11 @@ export default function Expense(props: P) {
 	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (inputValue === '' || name === '') return;
+
+		if (budget < 0) {
+			confirm('予算オーバーです。よろしいですか？');
+		}
+
 		budgetDispatch({
 			type: 'ADD_EXPENSE',
 			payload: parseInt(inputValue),
