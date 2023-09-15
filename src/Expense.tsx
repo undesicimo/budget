@@ -18,12 +18,6 @@ export default function Expense(props: P) {
 	const expenseDispatch = useContext(ExpenseContext);
 	const budget = useContext(BudgetLocalStorageContext);
 
-	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		if (event.key === 'Enter') {
-			event.preventDefault();
-		}
-	};
-
 	const handleSetExpense = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (inputValue === '' || name === '') return;
@@ -85,7 +79,6 @@ export default function Expense(props: P) {
 							placeholder='どいうの'
 							type='text'
 							onChange={e => setName(e.target.value)}
-							onKeyDown={handleKeyDown}
 						/>
 					</div>
 					<div>
@@ -93,7 +86,6 @@ export default function Expense(props: P) {
 							type='number'
 							placeholder='金額'
 							onChange={e => setInputValue(e.target.value)}
-							onKeyDown={handleKeyDown}
 						/>
 					</div>
 				</div>
