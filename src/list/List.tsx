@@ -1,7 +1,8 @@
 import { useContext, useMemo, useRef, useState } from 'react';
-import { Expense } from './types';
-import { ExpenseContext } from './expenseReducer';
-import { BudgetContext } from './budgetReducer';
+import { Expense } from '../types';
+import { ExpenseContext } from '../expenseReducer';
+import { BudgetContext } from '../budgetReducer';
+import DialogMain from './Dialog';
 
 type P = {
 	expense: Expense[];
@@ -33,22 +34,6 @@ export default function List(props: P) {
 		if (!item) return;
 		setSelectedItemID(item.id);
 		dialogRef.current?.showModal();
-	};
-
-	const DialogMain = ({ id }: { id: string }) => {
-		const selectedExpense = expense.find(item => item.id === id);
-
-		const handleClose = () => {
-			dialogRef.current?.close();
-		};
-
-		return (
-			<div className=''>
-				<h1>{selectedExpense?.name}</h1>
-				<p>{selectedExpense?.amount}</p>
-				<button onClick={handleClose}>閉じる</button>
-			</div>
-		);
 	};
 
 	return (
@@ -83,9 +68,11 @@ export default function List(props: P) {
 						</div>
 					</div>
 				))}
-				<dialog ref={dialogRef}>
-					<DialogMain id={selectedItemID} />
-				</dialog>
+					<DialogMain
+						id={selectedItemID}
+						expense={expense}
+						selectedRef={dialogRef}
+					/>
 			</div>
 		</>
 	);

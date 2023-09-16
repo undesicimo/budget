@@ -544,11 +544,6 @@ video {
   margin-right: auto;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -556,14 +551,6 @@ video {
 
 .mb-4 {
   margin-bottom: 1rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .mt-3 {
@@ -574,10 +561,6 @@ video {
   margin-top: 142px;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .flex {
   display: flex;
 }
@@ -586,8 +569,12 @@ video {
   height: 4rem;
 }
 
-.h-8 {
-  height: 2rem;
+.h-44 {
+  height: 11rem;
+}
+
+.h-\[2\.3rem\] {
+  height: 2.3rem;
 }
 
 .h-\[24px\] {
@@ -606,32 +593,16 @@ video {
   height: 100%;
 }
 
-.h-2 {
-  height: 0.5rem;
+.w-16 {
+  width: 4rem;
 }
 
-.h-\[2\.\] {
-  height: 2.;
+.w-44 {
+  width: 11rem;
 }
 
-.h-\[2\.3\] {
-  height: 2.3;
-}
-
-.h-\[2\.3rem\] {
-  height: 2.3rem;
-}
-
-.w-28 {
-  width: 7rem;
-}
-
-.w-60 {
-  width: 15rem;
-}
-
-.w-64 {
-  width: 16rem;
+.w-\[16\.5625rem\] {
+  width: 16.5625rem;
 }
 
 .w-\[21rem\] {
@@ -642,36 +613,12 @@ video {
   width: 24px;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-auto {
-  width: auto;
-}
-
-.w-\[16\.5rem\] {
-  width: 16.5rem;
-}
-
-.w-\[16\.5625rem\] {
-  width: 16.5625rem;
-}
-
-.w-20 {
-  width: 5rem;
+.w-\[7\.06563rem\] {
+  width: 7.06563rem;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-\[7\.06563rem\] {
-  width: 7.06563rem;
 }
 
 .flex-row {
@@ -692,10 +639,6 @@ video {
 
 .justify-between {
   justify-content: space-between;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .gap-8 {
@@ -789,18 +732,13 @@ video {
   line-height: 2.5rem;
 }
 
+.text-\[0\.61rem\] {
+  font-size: 0.61rem;
+}
+
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-.text-\[0\.61rem\] {
-  font-size: 0.61rem;
 }
 
 .text-black {
@@ -811,14 +749,6 @@ video {
 .text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-
-.text-\[\] {
-  color: ;
-}
-
-.text-\[0\.61\] {
-  color: 0.61;
 }
 
 .filter {
@@ -853,6 +783,24 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.open\:flex[open] {
+  display: flex;
+}
+
+.open\:bg-slate-600[open] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+}
+
+.open\:bg-black[open] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.open\:opacity-\[90\%\][open] {
+  opacity: 90%;
 }
 
 .focus\:outline-none:focus {

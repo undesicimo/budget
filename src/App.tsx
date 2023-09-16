@@ -6,7 +6,7 @@ import {
 	BudgetLocalStorageContext,
 	BUDGET_KEY,
 } from './budgetReducer';
-import List from './List';
+import List from './list/List';
 import Budget from './Budget';
 import Expense from './Expense';
 import { FormState, FormStates } from './types';
