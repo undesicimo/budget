@@ -1,4 +1,4 @@
-import { useContext, useMemo, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Expense } from '../types';
 import { ExpenseContext } from '../expenseReducer';
 import { BudgetContext } from '../budgetReducer';
@@ -10,7 +10,6 @@ type P = {
 
 export default function List(props: P) {
 	const { expense } = props;
-	const now = useMemo(() => new Date().toISOString().slice(0, 10), [expense]);
 
 	const [selectedItemID, setSelectedItemID] = useState('');
 	const expenseDispatch = useContext(ExpenseContext);
@@ -52,7 +51,7 @@ export default function List(props: P) {
 									title={item.name}>
 									{item.name}
 								</p>
-								<p className='text-black text-[0.61rem]'>{now}</p>
+								<p className='text-black text-[0.61rem]'>{item.createdAt}</p>
 							</div>
 							<div className='self-center'>
 								<p className='text-black text-2xl'>{`${item.amount}円`}</p>
@@ -68,11 +67,11 @@ export default function List(props: P) {
 						</div>
 					</div>
 				))}
-					<DialogMain
-						id={selectedItemID}
-						expense={expense}
-						selectedRef={dialogRef}
-					/>
+				<DialogMain
+					id={selectedItemID}
+					expense={expense}
+					selectedRef={dialogRef}
+				/>
 			</div>
 		</>
 	);

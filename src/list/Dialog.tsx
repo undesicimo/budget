@@ -17,13 +17,21 @@ export default function DialogMain({
 
 	return (
 		<dialog
-			className='open:flex flex-col items-center justify-between h-44 w-44 open:bg-slate-600 open:opacity-[90%]'
+			className='
+			open:flex flex-col justify-center items-center overflow-hidden
+			 h-48 w-[17.187rem] open:bg-primary text-black rounded-[0.625rem] shadow-md gap-4
+			px-[4.625rem] pt-[0.4375rem] pb-[0.5625rem]'
 			ref={selectedRef}>
-			<div>
-				<h1>{selectedExpense?.name}</h1>
+			<div className='expenseName w-full h-auto text-center overflow-visible'>
+				<div className='w-full h-full overflow-scroll'>
+					<h1 className='text-3xl'>{selectedExpense?.name}</h1>
+				</div>
+				<div>
+					<p className='text-sm'>{selectedExpense?.createdAt}</p>
+				</div>
 			</div>
 			<div>
-				<p>{selectedExpense?.amount}</p>
+				<p className='text-4xl'>{`￥${selectedExpense?.amount}`}</p>
 			</div>
 			<div>
 				<button onClick={handleClose}>閉じる</button>

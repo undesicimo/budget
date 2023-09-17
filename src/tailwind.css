@@ -29,3 +29,8 @@ input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
+
+.expenseName::-webkit-scrollbar-thumb {
+	height: 1px;
+	color: red;
+}

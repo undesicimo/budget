@@ -9,7 +9,7 @@ export const ExpenseContext = createContext<Dispatch<EXPENSE_ACTIONS>>(
 );
 
 type EXPENSE_ACTIONS =
-	| { type: 'ADD_EXPENSE'; payload: Omit<Expense, 'id'> }
+	| { type: 'ADD_EXPENSE'; payload: Omit<Expense, 'id' | 'createdAt'> }
 	| { type: 'RESET' }
 	| { type: 'DELETE_EXPENSE'; payload: Expense['id'] };
 
@@ -18,7 +18,11 @@ export function expenseReducer(expense: Expense[], action: EXPENSE_ACTIONS) {
 		case 'ADD_EXPENSE': {
 			const newExpense = [
 				...expense,
-				{ ...action.payload, id: generateRandomId() },
+				{
+					...action.payload,
+					id: generateRandomId(),
+					createdAt: (() => new Date().toISOString().slice(0, 10))(),
+				},
 			];
 			writeStorage(EXPENSE_KEY, newExpense);
 
