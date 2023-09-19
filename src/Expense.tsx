@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { BudgetContext, BudgetLocalStorageContext } from './budgetReducer';
 import { ExpenseContext } from './expenseReducer';
 import { FormStates } from './types';
-import { StyledInput } from './components';
 import { FORMSTATE_KEY } from './App';
 import { writeStorage } from '@rehooks/local-storage';
 
@@ -80,12 +79,14 @@ export default function Expense(props: P) {
 							border-black border-[0.608px] rounded-[0.56981rem]
 								w-[4.6875rem] h-[2.812rem]'>
 							<button
+								id='emoji-button'
 								className='
 							flex flex-col justify-center items-center	w-full h-full'>
 								<img src='public/images/mingcute-emoji-line.svg' />
 							</button>
 						</div>
 						<input
+							id='name-input'
 							placeholder='どういうの'
 							className='w-[11.25rem] h-[2.812rem] text-center focus:outline-none
 							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
@@ -95,6 +96,7 @@ export default function Expense(props: P) {
 					</div>
 					<div>
 						<input
+							id='amount-input'
 							placeholder='金額'
 							className='w-full h-[2.812rem] text-center focus:outline-none
 							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
@@ -105,11 +107,13 @@ export default function Expense(props: P) {
 				</div>
 				<div className='flex flex-row gap-8 h-[2.3rem]'>
 					<button
+						id='add-button'
 						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
 						type='submit'>
 						追加
 					</button>
 					<button
+						id='reset-button'
 						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
 						type='reset'
 						onClick={e => handleReset(e)}>
