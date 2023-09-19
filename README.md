@@ -5,9 +5,13 @@
 Maybe this app is the only way to make us not spend too much
 
 
-## Everything Designed by
-@mylifeaskyara
-
+## Co-Author
+Everything Designed by 
+<br/>
+<br/>
+<img src="https://avatars.githubusercontent.com/u/111421231?v=4" alt="drawing" width="200"/>
+<br/>
+[@mylifeaskyara](https://github.com/mylifeaskyara)
 ### Setup
 ```
 $ npm install
