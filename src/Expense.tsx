@@ -101,13 +101,12 @@ export default function Expense(props: P) {
 							className='w-full h-[2.812rem] text-center focus:outline-none
 							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
 							type='text'
-							onChange={e => setName(e.target.value)}
+							onChange={e => setInputValue(e.target.value)}
 						/>
 					</div>
 				</div>
 				<div className='flex flex-row gap-8 h-[2.3rem]'>
 					<button
-						id='add-button'
 						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
 						type='submit'>
 						追加
