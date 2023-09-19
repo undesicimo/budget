@@ -32,12 +32,11 @@ export default function Budget(props: P) {
 	return (
 		<div className='flex flex-col items-center justify-center overflow-x-hidden'>
 			<form onSubmit={handleSubmit}>
-				<div className='flex flex-col items-center'>
-					<h1 className='mb-4 text-center text-xl text-black'>
-						予算設定してね
-					</h1>
+				<div className='flex flex-col items-center gap-5'>
+					<h1 className='text-center text-xl text-black'>予算設定してね</h1>
 					<div className='h-[32px]'>
 						<StyledInput
+							id='budget'
 							type='number'
 							value={inputValue}
 							onChange={e => setInputValue(e.target.value)}
@@ -45,6 +44,7 @@ export default function Budget(props: P) {
 					</div>
 					<div className='flex justify-center'>
 						<button
+							id='submit-budget'
 							className='border-gray-600 border rounded-md mt-3 px-0.5 text-black'
 							type='submit'>
 							決定
