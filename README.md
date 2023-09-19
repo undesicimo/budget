@@ -2,6 +2,14 @@
 
 ## これはなんだ / WHATS THIS?!　
 
-最近お金使いすぎて同居人との出費管理用に作りました. 😀
+最近お金使いすぎて同居人との出費管理用に作りました.
 
-Maybe this app is the only way to make us not spend too much,,, (help)
+Maybe this app is the only way to make us not spend too much
+
+
+### Setup
+```
+$ npm install
+$ npm run start
+```
+This will start the app on localhost port 5173 (vite default)
