@@ -82,7 +82,7 @@ export default function Expense(props: P) {
 								id='emoji-button'
 								className='
 							flex flex-col justify-center items-center	w-full h-full'>
-								<img src='public/images/mingcute-emoji-line.svg' />
+								<img src='images/mingcute-emoji-line.svg' />
 							</button>
 						</div>
 						<input

@@ -60,7 +60,7 @@ export default function List(props: P) {
 						<div className='w-[24px] h-[24px] self-center'>
 							<button onClick={() => handleDelete(item)}>
 								<img
-									src='src/assets/deletebutton.svg'
+									src='images/deletebutton.svg'
 									alt='delete'
 								/>
 							</button>
