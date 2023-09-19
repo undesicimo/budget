@@ -74,18 +74,32 @@ export default function Expense(props: P) {
 					)}
 				</div>
 				<div className='flex flex-col gap-8 my-8 w-full'>
-					<div>
-						<StyledInput
-							placeholder='どいうの'
+					<div className='flex flex-row justify-between'>
+						<div
+							className='flex
+							border-black border-[0.608px] rounded-[0.56981rem]
+								w-[4.6875rem] h-[2.812rem]'>
+							<button
+								className='
+							flex flex-col justify-center items-center	w-full h-full'>
+								<img src='public/images/mingcute-emoji-line.svg' />
+							</button>
+						</div>
+						<input
+							placeholder='どういうの'
+							className='w-[11.25rem] h-[2.812rem] text-center focus:outline-none
+							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
 							type='text'
 							onChange={e => setName(e.target.value)}
 						/>
 					</div>
 					<div>
-						<StyledInput
-							type='number'
+						<input
 							placeholder='金額'
-							onChange={e => setInputValue(e.target.value)}
+							className='w-full h-[2.812rem] text-center focus:outline-none
+							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
+							type='text'
+							onChange={e => setName(e.target.value)}
 						/>
 					</div>
 				</div>
