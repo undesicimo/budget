@@ -12,14 +12,20 @@
 		"tailwind": "tailwind build -i src/tailwind.css -c tailwind.config.js -o src/index.css --watch"
 	},
 	"dependencies": {
+		"@radix-ui/react-popover": "^1.0.6",
 		"@rehooks/local-storage": "^2.4.5",
-		"@types/node": "^20.6.0",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.0.0",
 		"emoji-picker-react": "^4.5.1",
+		"lucide-react": "^0.279.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"tailwind-merge": "^1.14.0",
+		"tailwindcss-animate": "^1.0.7",
 		"uid": "^2.0.2"
 	},
 	"devDependencies": {
+		"@types/node": "^20.6.3",
 		"@types/react": "^18.2.15",
 		"@types/react-dom": "^18.2.7",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",

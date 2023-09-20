@@ -4,6 +4,12 @@ import { ExpenseContext } from './expenseReducer';
 import { FormStates } from './types';
 import { FORMSTATE_KEY } from './App';
 import { writeStorage } from '@rehooks/local-storage';
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from './components/ui/popover';
+import EmojiPicker from 'emoji-picker-react';
 
 type P = {
 	setInputValue: (value: React.SetStateAction<string>) => void;
@@ -78,12 +84,19 @@ export default function Expense(props: P) {
 							className='flex
 							border-black border-[0.608px] rounded-[0.56981rem]
 								w-[4.6875rem] h-[2.812rem]'>
-							<button
-								id='emoji-button'
-								className='
-							flex flex-col justify-center items-center	w-full h-full'>
-								<img src='images/mingcute-emoji-line.svg' />
-							</button>
+							<Popover>
+								<PopoverTrigger className='flex flex-col justify-center items-center	w-full h-full'>
+									<img src='images/mingcute-emoji-line.svg' />
+								</PopoverTrigger>
+								<PopoverContent>
+									<div>
+										<EmojiPicker
+											height={400}
+											width={300}
+										/>
+									</div>
+								</PopoverContent>
+							</Popover>
 						</div>
 						<input
 							id='name-input'
