@@ -19,6 +19,7 @@ type P = {
 export default function Expense(props: P) {
 	const { setInputValue, inputValue } = props;
 	const [name, setName] = useState('');
+	const [emoji, setEmoji] = useState('');
 	const budgetDispatch = useContext(BudgetContext);
 	const expenseDispatch = useContext(ExpenseContext);
 	const budget = useContext(BudgetLocalStorageContext);
@@ -37,10 +38,11 @@ export default function Expense(props: P) {
 		});
 		expenseDispatch({
 			type: 'ADD_EXPENSE',
-			payload: { name, amount: inputValue },
+			payload: { name, amount: inputValue, emoji },
 		});
 		setInputValue('');
 		setName('');
+		setEmoji('');
 		e.currentTarget.reset();
 	};
 
@@ -86,13 +88,21 @@ export default function Expense(props: P) {
 								w-[4.6875rem] h-[2.812rem]'>
 							<Popover>
 								<PopoverTrigger className='flex flex-col justify-center items-center	w-full h-full'>
-									<img src='images/mingcute-emoji-line.svg' />
+									{emoji ? (
+										<div className='text-2xl'>{emoji}</div>
+									) : (
+										<img src='images/mingcute-emoji-line.svg' />
+									)}
 								</PopoverTrigger>
 								<PopoverContent>
 									<div>
 										<EmojiPicker
+											onEmojiClick={emoji => setEmoji(emoji.emoji)}
 											height={400}
 											width={300}
+											previewConfig={{
+												defaultCaption: 'どいうやつ?',
+											}}
 										/>
 									</div>
 								</PopoverContent>
@@ -113,7 +123,7 @@ export default function Expense(props: P) {
 							placeholder='金額'
 							className='w-full h-[2.812rem] text-center focus:outline-none
 							 bg-white border-[0.608px] border-black rounded-[0.56981rem] text-black'
-							type='text'
+							type='number'
 							onChange={e => setInputValue(e.target.value)}
 						/>
 					</div>

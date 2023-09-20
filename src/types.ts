@@ -2,6 +2,7 @@ export type Expense = {
 	name: string;
 	amount: string;
 	id: string;
+	emoji: string;
 	createdAt: string;
 };
 
