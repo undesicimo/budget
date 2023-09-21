@@ -40,11 +40,14 @@ export default function List(props: P) {
 			<div className='my-8 overflow-auto h-[300px]'>
 				{expense.map(item => (
 					<div
-						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 flex flex-row justify-between px-8 mb-4'
+						className='rounded-[2.5rem] bg-zinc-200 w-[21rem] h-16 flex flex-row justify-between px-2 mb-4'
 						key={item.id}>
 						<button
-							className='flex flex-row gap-8'
+							className='flex flex-row gap-5'
 							onClick={() => onExpenseClickOpenDialog(item.id)}>
+							<div className='w-[3.125rem] h-[3.125rem] flex-shrink-0 border-slate-300 border-[1.5px] rounded-full bg-white self-center'>
+								<div className='text-[1.875rem]'>{item.emoji}</div>
+							</div>
 							<div className='self-center w-16'>
 								<p
 									className='text-black truncate'
