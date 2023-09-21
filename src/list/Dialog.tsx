@@ -19,7 +19,7 @@ export default function DialogMain({
 		<dialog
 			className='
 			open:flex flex-col justify-center items-center overflow-hidden
-			 h-48 w-[17.187rem] open:bg-primary text-black rounded-[0.625rem] shadow-md gap-4
+			 h-48 w-[17.187rem] open:bg-[#FFFFFFDE] text-black rounded-[0.625rem] shadow-md gap-4
 			px-[4.625rem] pt-[0.4375rem] pb-[0.5625rem]'
 			ref={selectedRef}>
 			<div className='expenseName w-full h-auto text-center overflow-visible'>
