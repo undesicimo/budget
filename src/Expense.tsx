@@ -130,13 +130,13 @@ export default function Expense(props: P) {
 				</div>
 				<div className='flex flex-row gap-8 h-[2.3rem]'>
 					<button
-						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
+						className='border-gray-600 border rounded-[0.56981rem] text-black w-[7.06563rem] h-full'
 						type='submit'>
 						追加
 					</button>
 					<button
 						id='reset-button'
-						className='border-gray-600 border rounded-md text-black w-[7.06563rem] h-full'
+						className='border-gray-600 border rounded-[0.56981rem] text-black w-[7.06563rem] h-full'
 						type='reset'
 						onClick={e => handleReset(e)}>
 						リセット
