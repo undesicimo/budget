@@ -18,3 +18,9 @@ $ npm install
 $ npm run start
 ```
 This will start the app on localhost port 5173 (vite default)
+
+or
+
+visit at 
+
+https://budget-gold.vercel.app/
