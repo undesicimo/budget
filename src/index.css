@@ -593,6 +593,10 @@ video {
   height: 3.125rem;
 }
 
+.h-\[3\.125rem\] {
+  height: 3.125rem;
+}
+
 .h-\[300px\] {
   height: 300px;
 }
@@ -905,9 +909,9 @@ video {
 }
 
 :root {
-  font-family: 'Yuji Syuku', serif;
+  font-family: 'Noto Sans JP', sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 300;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #fff;
