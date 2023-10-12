@@ -12,6 +12,7 @@
 		"tailwind": "tailwind build -i src/tailwind.css -c tailwind.config.js -o src/index.css --watch"
 	},
 	"dependencies": {
+		"@prisma/client": "^5.4.2",
 		"@radix-ui/react-popover": "^1.0.6",
 		"@rehooks/local-storage": "^2.4.5",
 		"class-variance-authority": "^0.7.0",
